@@ -23,13 +23,16 @@ const AuthProvider = ({ children }) => {
     }
 
     const createUser = (email, password) => {
+        setUser(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const userSingIn = (email, password) => {
+        setUser(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
     const signUp = () => {
+        setUser(true)
         return signOut(auth)
     }
     useEffect(() => {

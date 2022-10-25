@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { FaStar, FaStarHalfAlt, FaVideo } from 'react-icons/fa';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 const CoursesDetails = () => {
     const details = useLoaderData();
     const { Course_overview, description, hour, rating, img, tittle } = details;
@@ -40,7 +40,9 @@ const CoursesDetails = () => {
                         </p>
                         <p className='fs-5'><b>{hour} Hours</b> <FaVideo></FaVideo></p>
                     </Card.Text>
-                    <Button variant="primary">Get Premium Access</Button>
+                    <Link to={'/checkout'}>
+                        <Button variant="primary">Get Premium Access</Button>
+                    </Link>
                 </Card.Body>
             </Card>
         </Container>

@@ -5,12 +5,15 @@ import { Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 const Login = () => {
     const [accepted, setAccepted] = useState(false);
     const [error, setError] = useState(false)
-    const { singInGoogle, singInGithub, userSingIn } = useContext(AuthContext);
+    const { singInGoogle, singInGithub, userSingIn, setLoading } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/';
 
     // when click checkButton then it will be visible
     const checkButtonHandler = e => {
@@ -43,8 +46,9 @@ const Login = () => {
         userSingIn(email, password)
             .then(result => {
                 const user = result.user;
+                navigate(from, { replace: true })
                 setError('')
-                form.reset('')
+                form.reset('');
                 console.log(user);
 
             })
@@ -53,6 +57,7 @@ const Login = () => {
                 setError(error.message)
 
             })
+            .finally(setLoading(true))
     }
     return (
         <Card className='container text-center mt-2 mb-4 p-3 box shadow' style={{ width: '18rem' }}>
