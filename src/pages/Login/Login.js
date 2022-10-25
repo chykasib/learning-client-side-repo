@@ -8,8 +8,9 @@ import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 const Login = () => {
-    const { singInGoogle, singInGithub } = useContext(AuthContext);
     const [accepted, setAccepted] = useState(false);
+    const [error, setError] = useState(false)
+    const { singInGoogle, singInGithub, userSingIn } = useContext(AuthContext);
 
     // when click checkButton then it will be visible
     const checkButtonHandler = e => {
@@ -32,9 +33,30 @@ const Login = () => {
             })
             .catch(error => console.error(error));
     }
+
+    // login by email and password
+    const loginByEmailPasswordHandler = e => {
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        userSingIn(email, password)
+            .then(result => {
+                const user = result.user;
+                setError('')
+                form.reset('')
+                console.log(user);
+
+            })
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+
+            })
+    }
     return (
         <Card className='container text-center mt-2 mb-4 p-3 box shadow' style={{ width: '18rem' }}>
-            <Form >
+            <Form onSubmit={loginByEmailPasswordHandler}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" name='email' placeholder="Enter email" required />
@@ -47,6 +69,7 @@ const Login = () => {
                     <Form.Check onClick={checkButtonHandler} type="checkbox" label="Check me out" />
                 </Form.Group>
                 <p>Don't have an account? <Link to={'/register'}>Sign up</Link></p>
+                <p className='text-danger'>{error}</p>
                 <Button variant="warning" type="submit" disabled={!accepted}>
                     Login
                 </Button>
