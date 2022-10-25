@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -7,10 +8,25 @@ import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 const Login = () => {
-    const { singInGoogle } = useContext(AuthContext);
+    const { singInGoogle, singInGithub } = useContext(AuthContext);
+    const [accepted, setAccepted] = useState(false);
 
+    // when click checkButton then it will be visible
+    const checkButtonHandler = e => {
+        setAccepted(e.target.checked)
+    }
+    // login by google
     const singInGoogleHandler = () => {
         singInGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(error => console.error(error));
+    }
+    // login by github
+    const singInGithubHandler = () => {
+        singInGithub()
             .then(result => {
                 const user = result.user;
             })
@@ -28,15 +44,15 @@ const Login = () => {
                     <Form.Control type="password" name='password' placeholder="Password" required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
+                    <Form.Check onClick={checkButtonHandler} type="checkbox" label="Check me out" />
                 </Form.Group>
                 <p>Don't have an account? <Link to={'/register'}>Sign up</Link></p>
-                <Button variant="warning" type="submit">
+                <Button variant="warning" type="submit" disabled={!accepted}>
                     Login
                 </Button>
             </Form>
-            <Button onClick={singInGoogleHandler} className='my-3' variant="success"><FaGoogle></FaGoogle> Google</Button>
-            <Button variant="dark"><FaGithub></FaGithub> Github</Button>
+            <Button onClick={singInGoogleHandler} className='my-3' variant="success"><FaGoogle className='me-2'></FaGoogle> Google</Button>
+            <Button onClick={singInGithubHandler} variant="dark"><FaGithub className='me-2'></FaGithub> Github</Button>
         </Card>
     );
 };

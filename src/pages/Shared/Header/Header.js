@@ -8,14 +8,20 @@ import { Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, signUp } = useContext(AuthContext);
+
+    const signUpHandler = () => {
+        signUp()
+            .then(() => { })
+            .catch(error => console.error())
+    }
     return (
         <Navbar className='shadow p-3 mb-5' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
                 <Navbar>
                     <Image
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAsKn2GVCHU9EkFJz2xjNhgG98XjlnAZf-GQ&usqp=CAU"
-                        style={{ height: '60px' }}
+                        style={{ height: '50px' }}
                         roundedCircle
                     >
 
@@ -30,13 +36,25 @@ const Header = () => {
                     </Nav>
                     <Nav>
                         <Link className='text-decoration-none text-light px-3 fs-4' to={'/blog'}>Blog</Link>
-                        <Link className='text-decoration-none text-light px-3 fs-4' to={'/login'} eventKey={2}>
-                            <Button variant="warning">Login </Button>
-                        </Link>
+                        {
+                            user?.uid ?
+                                <>
+                                    <Link className='text-decoration-none text-light px-3 fs-4' to={'/login'} eventKey={2}>
+                                        <Button onClick={signUpHandler} variant="warning">Sign Up </Button>
+                                    </Link>
+                                    <Image
+                                        src={user?.photoURL}
+                                        style={{ height: '50px' }}
+                                        roundedCircle
+                                    ></Image>
+                                </>
+                                : <Link className='text-decoration-none text-light px-3 fs-4' to={'/login'} eventKey={2}>
+                                    <Button variant="warning">Login </Button>
+                                </Link>
+                        }
+
                     </Nav>
-                    {
-                        user.name
-                    }
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>
