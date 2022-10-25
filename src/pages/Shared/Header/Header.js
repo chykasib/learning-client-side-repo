@@ -4,7 +4,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image'
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { useContext } from 'react';
+import { AuthContext } from '../../../Context/AuthProvider';
 const Header = () => {
+    const { user } = useContext(AuthContext);
     return (
         <Navbar className='shadow p-3 mb-5' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
@@ -25,11 +29,14 @@ const Header = () => {
                         <Link className='text-decoration-none text-light px-3 fs-4' to={'/faq'}>FAQ</Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
-                        </Nav.Link>
+                        <Link className='text-decoration-none text-light px-3 fs-4' to={'/blog'}>Blog</Link>
+                        <Link className='text-decoration-none text-light px-3 fs-4' to={'/login'} eventKey={2}>
+                            <Button variant="warning">Login </Button>
+                        </Link>
                     </Nav>
+                    {
+                        user.name
+                    }
                 </Navbar.Collapse>
             </Container>
         </Navbar>

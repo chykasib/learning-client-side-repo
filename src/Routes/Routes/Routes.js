@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://learninng-server-side.vercel.app/courses/${params.id}`)
             },
             {
-                path: '/blog', element: <Blog></Blog>
+                path: 'blog', element: <Blog></Blog>
             },
             {
                 path: 'login', element: <Login></Login>
