@@ -4,14 +4,15 @@ import Blog from "../../pages/Blog/Blog";
 import Courses from "../../pages/Courses/Courses";
 import ErrorPage from "../../pages/ErrorPages/ErrorPages";
 import Login from "../../pages/Login/Login";
-import Register from "../../pages/Register/Register";
+import Register from "../../pages/Register/Register"
 
 export const router = createBrowserRouter([
     {
         path: '/', element: <Main></Main>, errorElement: <ErrorPage />, children: [
             {
                 path: '/courses',
-                element: <Courses></Courses>
+                element: <Courses></Courses>,
+                loader: () => fetch('https://learninng-server-side.vercel.app/courses')
             },
             {
                 path: '/blog', element: <Blog></Blog>
