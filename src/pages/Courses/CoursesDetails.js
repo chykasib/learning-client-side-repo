@@ -6,7 +6,7 @@ import { FaStar, FaStarHalfAlt, FaVideo } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 const CoursesDetails = () => {
     const details = useLoaderData();
-    const { Course_overview, description, hour, rating, img, tittle } = details;
+    const { Course_overview, description, hour, rating, img, tittle, id } = details;
     return (
         <Container className='my-5'>
             <Card className="text-center">
@@ -14,14 +14,16 @@ const CoursesDetails = () => {
                 <Card.Body>
                     <Card.Img src={img} style={{ height: 'auto' }} />
                     <Card.Text>
-                        <h2 className='my-3'><b><u>Course overview</u></b> </h2>
+                        <h2 className='my-3 text-start ps-4'><b><u>Course overview</u></b> </h2>
                         <>
 
                             {
                                 Course_overview.map(co =>
 
 
-                                    <li>{co}</li>
+
+                                    <li className='text-start ps-4'>{co}</li>
+
 
 
 
@@ -31,8 +33,8 @@ const CoursesDetails = () => {
                         </>
                     </Card.Text>
                     <Card.Text>
-                        <h2 className='my-3'><b><u>Description</u></b> </h2>
-                        <p>{description}</p>
+                        <h2 className='my-3 text-start ps-4'><b><u>Description</u></b> </h2>
+                        <p className='my-3 text-start ps-4'>{description}</p>
 
                     </Card.Text>
                     <Card.Text className='d-flex justify-content-around align-items-center'>
@@ -40,8 +42,8 @@ const CoursesDetails = () => {
                         </p>
                         <p className='fs-5'><b>{hour} Hours</b> <FaVideo></FaVideo></p>
                     </Card.Text>
-                    <Link to={'/checkout'}>
-                        <Button variant="primary">Get Premium Access</Button>
+                    <Link to={`/checkout/${id}`}>
+                        <Button className='mb-3' variant="primary">Get Premium Access</Button>
                     </Link>
                 </Card.Body>
             </Card>

@@ -9,7 +9,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 const Register = () => {
     const [accepted, setAccepted] = useState(false);
     const [error, setError] = useState(false)
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     // when click checkButton then it will be visible
     const checkButtonHandler = e => {
         setAccepted(e.target.checked)
@@ -26,15 +26,26 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                form.reset('')
-                setError('')
                 console.log(user);
+                setError('')
+                form.reset('')
+                updateUserProfileHandler(name, photoURL);
 
             })
             .catch(error => {
                 console.error(error)
                 setError(error.message)
             })
+    }
+
+    const updateUserProfileHandler = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error))
     }
     return (
         <Card className='container text-center mb-4 p-3 box shadow' style={{ width: '18rem' }}>
@@ -45,7 +56,7 @@ const Register = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPhoto">
                     <Form.Label>Photo URL</Form.Label>
-                    <Form.Control type="text" name='photoURL' placeholder="Enter Photo URL" />
+                    <Form.Control type="photoURL" name='photoURL' placeholder="Enter Photo URL" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

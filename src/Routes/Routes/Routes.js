@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     {
         path: '/', element: <Main></Main>, errorElement: <ErrorPage />, children: [
             {
-                path: '/courses',
+                path: '/',
                 element: <Courses></Courses>,
                 loader: () => fetch('https://learninng-server-side.vercel.app/courses')
             },
@@ -23,16 +23,18 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://learninng-server-side.vercel.app/courses/${params.id}`)
             },
             {
-                path: 'blog', element: <Blog></Blog>
+                path: '/blog', element: <Blog></Blog>
             },
             {
-                path: 'login', element: <Login></Login>
+                path: '/login', element: <Login></Login>
             },
             {
-                path: 'register', element: <Register></Register>
+                path: '/register', element: <Register></Register>
             },
             {
-                path: 'checkout', element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>
+                path: '/checkout/:id',
+                element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>,
+                loader: ({ params }) => fetch(`https://learninng-server-side.vercel.app/checkout/${params.id}`)
             }
         ]
     }
