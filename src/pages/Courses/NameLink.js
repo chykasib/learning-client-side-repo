@@ -7,9 +7,9 @@ const NameLink = ({ name }) => {
     return (
         <div>
             <Col>
-                <Card>
+                <Card className='bg-dark'>
                     <Card.Body>
-                        <Link to={`/courses/${id}`}><Card.Title>{tittle}</Card.Title></Link>
+                        <Link className='text-light' to={`/courses/${id}`}><Card.Title><p className=' text-center py-2 px-4'>{tittle}</p></Card.Title></Link>
                     </Card.Body>
                 </Card>
             </Col>

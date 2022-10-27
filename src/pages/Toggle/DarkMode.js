@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,23 +8,10 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { Button } from 'react-bootstrap';
 import { useContext } from 'react';
-
 import { AuthContext } from '../../../Context/AuthProvider';
-const Header = () => {
-    const [mode, setMode] = useState('light');
+const DarkMode = () => {
+
     const { user, signUp } = useContext(AuthContext);
-
-    const toggleMode = () => {
-        if (mode === 'light') {
-            setMode('dark');
-            document.body.style.backgroundColor = 'info';
-        }
-        else {
-            setMode('light');
-            document.body.style.backgroundColor = 'warning';
-        }
-    }
-
 
     const signUpHandler = () => {
         signUp()
@@ -34,7 +21,8 @@ const Header = () => {
 
     }
     return (
-        <Navbar className={'shadow-lg p-3 mb-5 expand-lg navbar- bg-dark'}>
+
+        <>
             <Container>
                 <Navbar>
                     <Image
@@ -51,11 +39,8 @@ const Header = () => {
                         <Link className='text-decoration-none text-light px-4 fs-4' to={'/'}>Courses</Link>
                         <Link className='text-decoration-none text-light px-3 fs-4' to={'/faq'}>FAQ</Link>
                     </Nav>
-                    <Nav class="form-check form-switch">
-                        <input onClick={toggleMode} class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-
-                    </Nav>
                     <Nav>
+                        <Link className='text-decoration-none text-light px-3 fs-4' to={'/blog'}>Blog</Link>
                         {
                             user?.uid ?
                                 <>
@@ -94,8 +79,8 @@ const Header = () => {
 
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </>
     );
 };
 
-export default Header;
+export default DarkMode;

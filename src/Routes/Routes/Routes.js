@@ -5,6 +5,7 @@ import CheckOut from "../../pages/CheckOut/CheckOut";
 import Courses from "../../pages/Courses/Courses";
 import CoursesDetails from "../../pages/Courses/CoursesDetails";
 import ErrorPage from "../../pages/ErrorPages/ErrorPages";
+import Faq from "../../pages/Faq/Faq";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register"
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
                 path: '/checkout/:id',
                 element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>,
                 loader: ({ params }) => fetch(`https://learninng-server-side.vercel.app/checkout/${params.id}`)
+            }
+            ,
+            {
+                path: '/faq', element: <Faq></Faq>
             }
         ]
     }

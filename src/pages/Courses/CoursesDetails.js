@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { FaStar, FaStarHalfAlt, FaVideo } from 'react-icons/fa';
+import { FaDownload, FaStar, FaStarHalfAlt, FaVideo } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 const CoursesDetails = () => {
     const details = useLoaderData();
@@ -10,7 +10,8 @@ const CoursesDetails = () => {
     return (
         <Container className='my-5'>
             <Card className="text-center">
-                <Card.Header className='bg-dark py-3 text-light'><h1>{tittle}</h1></Card.Header>
+                <Card.Header className='bg-dark py-3 text-light'><h1>{tittle} <Button className='ms-4'><FaDownload className='text-light'></FaDownload></Button></h1>
+                </Card.Header>
                 <Card.Body>
                     <Card.Img src={img} style={{ height: 'auto' }} />
                     <Card.Text>
