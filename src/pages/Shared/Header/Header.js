@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { Button } from 'react-bootstrap';
-import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 import { useContext } from 'react';
 
 import { AuthContext } from '../../../Context/AuthProvider';
@@ -52,8 +52,15 @@ const Header = () => {
                             className='text-decoration-none text-light px-4 fs-4 navbar-link-active' to={'/'}>Courses</Link>
                         <Link className='text-decoration-none text-light px-3 fs-4' to={'/faq'}>FAQ</Link>
                     </Nav>
-                    <Nav class="form-check form-switch">
-                        <input onClick={toggleMode} class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                    <Nav className='text-light'>
+                        <Nav>Dark</Nav>
+                        <Form className='ms-3' onClick={toggleMode}>
+                            <Form.Check
+                                type="switch"
+                                id="custom-switch"
+                            />
+                        </Form>
+                        <Nav className='text-info'>Light</Nav>
                     </Nav>
                     <Nav>
                         <Link className='text-decoration-none text-light px-3 fs-4' to={'/blog'}>Blog</Link>
