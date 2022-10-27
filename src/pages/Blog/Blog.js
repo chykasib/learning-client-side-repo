@@ -7,7 +7,7 @@ const Blog = () => {
             <h1 className='mb-5'><u>Some Questions And Answers</u></h1>
             <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header><h4><b className='pe-3'>Question 1:</b>  What is cors</h4></Accordion.Header>
+                    <Accordion.Header><h4><b className='pe-3'>Question 1:</b>  What is cors?</h4></Accordion.Header>
                     <Accordion.Body>
                         <p className='p-3 text-start'>Cross-Origin Resource Sharing (CORS) is a mechanism that uses additional HTTPheaders to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin.A web application makes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, and port) than its own origin.</p>
                     </Accordion.Body>
