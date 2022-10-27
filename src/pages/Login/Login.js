@@ -6,11 +6,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 const Login = () => {
     const [accepted, setAccepted] = useState(false);
     const [error, setError] = useState(false)
-    const { singInGoogle, singInGithub, userSingIn, setLoading } = useContext(AuthContext);
+    const [userEmail, setUserEmail] = useState('');
+    const { singInGoogle, singInGithub, userSingIn, setLoading, resetPassword } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/';
@@ -62,12 +64,27 @@ const Login = () => {
             })
             .finally(setLoading(true))
     }
+    const handleEmailBlur = e => {
+        const email = e.target.value;
+        setUserEmail(email);
+    }
+
+    const resetPasswordHandler = () => {
+        if (!userEmail) {
+            toast('Please enter your email address.');
+        }
+        resetPassword(userEmail)
+            .then(() => {
+                toast('password reset and email sent. Please check your email ')
+            })
+            .catch(error => console.error(error));
+    }
     return (
         <Card className='container text-center mt-2 mb-4 p-3 box shadow' style={{ width: '18rem' }}>
             <Form onSubmit={loginByEmailPasswordHandler}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" name='email' placeholder="Enter email" required />
+                    <Form.Control onBlur={handleEmailBlur} type="email" name='email' placeholder="Enter email" required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
@@ -76,6 +93,7 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check onClick={checkButtonHandler} type="checkbox" label="Check me out" />
                 </Form.Group>
+                <p>Forget password? <Link onClick={resetPasswordHandler}><small>Reset Password</small></Link></p>
                 <p>Don't have an account? <Link to={'/register'}>Sign up</Link></p>
                 <p className='text-danger'>{error}</p>
                 <Button variant="warning" type="submit" disabled={!accepted}>

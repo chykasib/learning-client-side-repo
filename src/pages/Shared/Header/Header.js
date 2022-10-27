@@ -11,17 +11,15 @@ import { useContext } from 'react';
 
 import { AuthContext } from '../../../Context/AuthProvider';
 const Header = () => {
-    const [mode, setMode] = useState('light');
+    const [mode, setMode] = useState('dark');
     const { user, signUp } = useContext(AuthContext);
 
     const toggleMode = () => {
-        if (mode === 'light') {
-            setMode('dark');
-            document.body.style.backgroundColor = 'info';
+        if (mode === 'dark') {
+            setMode('secondary');
         }
         else {
-            setMode('light');
-            document.body.style.backgroundColor = 'warning';
+            setMode('dark');
         }
     }
 
@@ -34,7 +32,7 @@ const Header = () => {
 
     }
     return (
-        <Navbar className={'shadow-lg p-3 mb-5 expand-lg navbar- bg-dark'}>
+        <Navbar className={`shadow-lg  p-3 mb-5 expand-lg navbar-${mode} bg-${mode}`}>
             <Container>
                 <Navbar>
                     <Image
@@ -44,7 +42,7 @@ const Header = () => {
                     >
                     </Image>
                 </Navbar>
-                <Navbar className='text-info fs-3 ms-4 pe-3'>Keystone Cse Courses</Navbar>
+                <Navbar className='text-info fs-3 ms-4 pe-3 d-sm-none'>Keystone Cse Courses</Navbar>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
@@ -53,8 +51,11 @@ const Header = () => {
                     </Nav>
                     <Nav class="form-check form-switch">
                         <input onClick={toggleMode} class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-
                     </Nav>
+                    <Nav>
+                        <Link className='text-decoration-none text-light px-3 fs-4' to={'/blog'}>Blog</Link>
+                    </Nav>
+
                     <Nav>
                         {
                             user?.uid ?
