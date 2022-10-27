@@ -1,19 +1,29 @@
-import React from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import React from "react";
+import Pdf from "react-to-pdf";
 import { FaDownload, FaStar, FaStarHalfAlt, FaVideo } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
+const ref = React.createRef();
 const CoursesDetails = () => {
     const details = useLoaderData();
-    const ref = React.createRef();
     const { Course_overview, description, hour, rating, img, tittle, id } = details;
+
+
     return (
 
-        <Container className='my-5'>
+        <Container ref={ref} className='my-5'>
 
             <Card className="text-center">
-                <Card.Header className='bg-dark py-3 text-light'><h1>{tittle} <Button className='ms-4'><FaDownload className='text-light'></FaDownload></Button></h1>
+                <Card.Header className='bg-dark py-3 text-light'><h1>{tittle}
+
+                    <Pdf targetRef={ref} filename="code-example.pdf" style={{ width: "100px" }}>
+                        {({ toPdf }) =>
+                            <Button className='ms-4' onClick={toPdf}><FaDownload className='text-light'></FaDownload></Button>}
+                    </Pdf>
+
+                </h1>
                 </Card.Header>
                 <Card.Body>
                     <Card.Img src={img} style={{ height: 'auto' }} />

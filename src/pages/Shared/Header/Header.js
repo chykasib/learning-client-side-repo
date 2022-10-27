@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { Button } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
 import { useContext } from 'react';
 
 import { AuthContext } from '../../../Context/AuthProvider';
@@ -31,6 +32,7 @@ const Header = () => {
 
 
     }
+
     return (
         <Navbar className={`shadow-lg  p-3 mb-5 expand-lg navbar-${mode} bg-${mode}`}>
             <Container>
@@ -42,11 +44,12 @@ const Header = () => {
                     >
                     </Image>
                 </Navbar>
-                <Navbar className='text-info fs-3 ms-4 pe-3 d-sm-none'>Keystone Cse Courses</Navbar>
+                <Navbar className='text-info fs-3 ms-4 pe-3'>Keystone Cse Courses</Navbar>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Link className='text-decoration-none text-light px-4 fs-4' to={'/'}>Courses</Link>
+                        <Link
+                            className='text-decoration-none text-light px-4 fs-4 navbar-link-active' to={'/'}>Courses</Link>
                         <Link className='text-decoration-none text-light px-3 fs-4' to={'/faq'}>FAQ</Link>
                     </Nav>
                     <Nav class="form-check form-switch">
@@ -79,9 +82,6 @@ const Header = () => {
                                                 style={{ height: '50px' }}
                                                 roundedCircle
                                             ></Image>
-
-
-
                                         )}
                                     </OverlayTrigger>
 
@@ -95,7 +95,7 @@ const Header = () => {
 
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </Navbar >
     );
 };
 

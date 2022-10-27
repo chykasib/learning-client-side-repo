@@ -3,9 +3,9 @@
 About my website:
 
 ◉ Website Name: Keystone Cse Courses
-◉ Responsive this website mobile and desktop
-◉ here some routes:  blog, courses, login, register, checkout, faq
-◉ add a special download button and a toggle button;
+◉ Responsive this website for  mobile and desktop devices
+◉ Here some routes:  blog, courses, login, register, checkout, faq
+◉ Add a special download button and a toggle button;
 ◉ I use here react-bootstrap css framework
 ◉ live website link: 
 
