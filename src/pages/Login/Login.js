@@ -95,7 +95,7 @@ const Login = () => {
                 </Form.Group>
                 <p>Forget password? <Link onClick={resetPasswordHandler}><small>Reset Password</small></Link></p>
                 <p>Don't have an account? <Link to={'/register'}>Sign up</Link></p>
-                <p className='text-danger'>{error}</p>
+                <p className='text-danger'></p>{error}
                 <Button variant="warning" type="submit" disabled={!accepted}>
                     Login
                 </Button>
