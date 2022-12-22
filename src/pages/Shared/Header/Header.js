@@ -9,7 +9,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useContext } from 'react';
-
+import AnimatedText from 'react-animated-text-content';
 import { AuthContext } from '../../../Context/AuthProvider';
 const Header = () => {
     const [mode, setMode] = useState('dark');
@@ -44,7 +44,27 @@ const Header = () => {
                     >
                     </Image>
                 </Navbar>
-                <Navbar className='text-info fs-3 ms-4 pe-3'>Keystone Cse Courses</Navbar>
+                <Navbar className='text-info fs-3 ms-4 pe-3'>
+                    <AnimatedText
+                        type="words" // animate words or chars
+                        animation={{
+                            x: '200px',
+                            y: '-20px',
+                            scale: 1.1,
+                            ease: 'ease-in-out',
+                        }}
+                        animationType="float"
+                        interval={0.06}
+                        duration={0.8}
+                        tag="p"
+                        className="animated-paragraph"
+                        includeWhiteSpaces
+                        threshold={0.1}
+                        rootMargin="20%"
+                    >
+                        Keystone Cse Courses
+                    </AnimatedText>
+                </Navbar>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
