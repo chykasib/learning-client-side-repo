@@ -9,8 +9,8 @@ const Courses = () => {
     return (
         <Container className='my-4'>
             <Row>
-                <Col xs={8}>
-                    <Row xs={1} md={2} className="g-4">
+                <Col lg={8} sm={12}>
+                    <Row md={2} className="g-4">
                         {Array.from({ length: 1 }).map((_, idx) => (
                             <>
                                 {
@@ -20,8 +20,8 @@ const Courses = () => {
                         ))}
                     </Row>
                 </Col>
-                <Col xs={4}>
-                    <Row xs={1} md={1} className="g-4">
+                <Col lg={4} sm={12}>
+                    <Row md={1} className="g-4">
                         {Array.from({ length: 1 }).map((_, idx) => (
                             <>
                                 {

@@ -5,7 +5,7 @@ const Course = ({ course }) => {
     const { author, img, price, rating, tittle } = course;
     return (
         <div>
-            <Col >
+            <Col>
                 <Card>
                     <Card.Img variant="top" src={img} style={{ height: '200px' }} />
                     <Card.Body>
