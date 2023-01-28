@@ -7,7 +7,7 @@ const Course = ({ course }) => {
         <div>
             <Col>
                 <Card>
-                    <Card.Img variant="top" src={img} style={{ height: 'auto' }} />
+                    <Card.Img variant="top" src={img} style={{ height: '200px' }} />
                     <Card.Body>
                         <Card.Title>{tittle}</Card.Title>
                         <Card.Text>
